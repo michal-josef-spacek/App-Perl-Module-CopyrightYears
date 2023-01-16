@@ -1,5 +1,5 @@
 ---
-abstract: 'Tool for creating examples from Perl module POD documentation.'
+abstract: 'Tool for update copyright years in Perl distribution.'
 author:
   - 'Michal Josef Spacek <skim@cpan.org>'
 build_requires:

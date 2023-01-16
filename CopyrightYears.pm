@@ -96,7 +96,7 @@ __END__
 
 =head1 NAME
 
-App::Perl::Module::CopyrightYears - Base class for perl-module-examples script.
+App::Perl::Module::CopyrightYears - Base class for perl-module-copyright-years tool.
 
 =head1 SYNOPSIS
 
