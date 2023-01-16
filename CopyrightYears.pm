@@ -56,7 +56,7 @@ sub run {
 		$rule->new->directory->name('inc')->prune->discard,
 		$rule->new->directory->name('blib')->prune->discard,
 		$rule->new,
-	)->name('*.pm')->in('.');
+	)->name('*.pm', '*.pod')->in('.');
 
 	# Dump perl modules in debug mode.
 	if ($self->{'_opts'}->{'d'}) {
