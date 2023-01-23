@@ -50,13 +50,7 @@ sub run {
 	}
 
 	# Find all perl module files in actual directory.
-	my $rule = File::Find::Rule->new;
-	my @pm = $rule->or(
-		$rule->new->directory->name('t')->prune->discard,
-		$rule->new->directory->name('inc')->prune->discard,
-		$rule->new->directory->name('blib')->prune->discard,
-		$rule->new,
-	)->name('*.pm', '*.pod')->in('.');
+	my @pm = $self->_files('*.pm', '*.pod');
 
 	# Dump perl modules in debug mode.
 	if ($self->{'_opts'}->{'d'}) {
@@ -84,6 +78,20 @@ sub run {
 	# TODO
 	
 	return 0;
+}
+
+sub _files {
+	my ($self, @file_globs) = @_;
+
+	my $rule = File::Find::Rule->new;
+	my @pm = $rule->or(
+		$rule->new->directory->name('t')->prune->discard,
+		$rule->new->directory->name('inc')->prune->discard,
+		$rule->new->directory->name('blib')->prune->discard,
+		$rule->new,
+	)->name(@file_globs)->in('.');
+
+	return @pm;
 }
 
 1;
