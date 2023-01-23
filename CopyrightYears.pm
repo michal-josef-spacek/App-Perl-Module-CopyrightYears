@@ -49,6 +49,11 @@ sub run {
 		return 1;
 	}
 
+	# Default year.
+	if (! defined $self->{'_opts'}->{'y'}) {
+		$self->{'_opts'}->{'y'} = (localtime(time))[5] + 1900;
+	}
+
 	# Find all perl module files in actual directory.
 	my @pm = $self->_files('*.pm', '*.pod');
 
