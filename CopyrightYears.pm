@@ -69,13 +69,7 @@ sub run {
 	# For each example save example.
 	my $num = 1;
 	foreach my $perl_module_file (@pm) {
-		my @sections = split m/,/, $self->{'_opts'}->{'s'};
-		my $cy = Pod::CopyrightYears->new(
-			'pod_file' => $perl_module_file,
-			'section_names' => \@sections,
-		);
-		$cy->change_years($self->{'_opts'}->{'y'});
-		barf($perl_module_file, $cy->pod);
+		$self->_update_pod($perl_module_file);
 	}
 
 	# Change copyright years in LICENSE file.
@@ -117,6 +111,20 @@ sub _files {
 	)->name(@file_globs)->in($dir);
 
 	return @pm;
+}
+
+sub _update_pod {
+	my ($self, $file) = @_;
+
+	my @sections = split m/,/, $self->{'_opts'}->{'s'};
+	my $cy = Pod::CopyrightYears->new(
+		'pod_file' => $file,
+		'section_names' => \@sections,
+	);
+	$cy->change_years($self->{'_opts'}->{'y'});
+	barf($file, $cy->pod);
+
+	return;
 }
 
 1;
