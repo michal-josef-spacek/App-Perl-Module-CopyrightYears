@@ -93,7 +93,21 @@ sub run {
 	}
 
 	# Look for scripts with copyright years.
-	# TODO
+	if (-d 'bin') {
+		my @bin = $self->_files('bin', '*');
+
+		# Dump tools in debug mode.
+		if ($self->{'_opts'}->{'d'}) {
+			require Dumpvalue;
+			my $dump = Dumpvalue->new;
+			$dump->dumpValues(\@bin);
+		}
+
+		# Update years.
+		foreach my $bin (@bin) {
+			$self->_update_pod($bin);
+		}
+	}
 	
 	return 0;
 }
