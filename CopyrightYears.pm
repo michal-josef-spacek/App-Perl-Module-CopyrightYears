@@ -57,7 +57,7 @@ sub run {
 	}
 
 	# Find all perl module files in actual directory.
-	my @pm = $self->_files('*.pm', '*.pod');
+	my @pm = $self->_files('.', '*.pm', '*.pod');
 
 	# Dump perl modules in debug mode.
 	if ($self->{'_opts'}->{'d'}) {
@@ -79,7 +79,7 @@ sub run {
 	}
 
 	# Change copyright years in LICENSE file.
-	my ($license) = $self->_files('LICENSE');
+	my ($license) = $self->_files('.', 'LICENSE');
 	if (defined $license && -r $license) {
 		my @license = slurp($license);
 		my $opts_hr = {
@@ -106,7 +106,7 @@ sub run {
 }
 
 sub _files {
-	my ($self, @file_globs) = @_;
+	my ($self, $dir, @file_globs) = @_;
 
 	my $rule = File::Find::Rule->new;
 	my @pm = $rule->or(
@@ -114,7 +114,7 @@ sub _files {
 		$rule->new->directory->name('inc')->prune->discard,
 		$rule->new->directory->name('blib')->prune->discard,
 		$rule->new,
-	)->name(@file_globs)->in('.');
+	)->name(@file_globs)->in($dir);
 
 	return @pm;
 }
