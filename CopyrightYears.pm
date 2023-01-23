@@ -201,9 +201,11 @@ Returns 1 for error, 0 for success.
  exit App::Perl::Module::CopyrightYears->new->run;
 
  # Output like:
- # Usage: ./print_help.pl [-d] [-h] [-y last_year] [--version]
+ # Usage: ./print_help.pl [-d] [-h] [-s section(s)] [-y last_year] [--version]
  #         -d              Debug mode.
  #         -h              Print help.
+ #         -s section(s)   Section(s) to look (default is LICENSE AND COPYRIGHT)
+ #         -y last_year    Last year (default value is actual year)
  #         --version       Print version.
 
 =head1 DEPENDENCIES

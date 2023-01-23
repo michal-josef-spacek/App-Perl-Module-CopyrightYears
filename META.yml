@@ -20,6 +20,7 @@ meta-spec:
 name: App-Perl-Module-CopyrightYears
 no_index:
   directory:
+    - examples
     - inc
     - t
     - xt
