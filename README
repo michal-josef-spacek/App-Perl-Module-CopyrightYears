@@ -3,7 +3,7 @@ NAME
     distribution.
 
 SYNOPSIS
-     perl-module-copyright-years [-d] [-h] [--version]
+     perl-module-copyright-years [-d] [-h] [-s section(s)] [-y last_year] [--version]
 
 DESCRIPTION
     Tool to update copyright years in Perl distribution. It's changing years
@@ -17,6 +17,15 @@ ARGUMENTS
     *       "-h"
 
             Print help.
+
+    *       "-s section(s)"
+
+            Section(s) to look. Default value is 'LICENSE AND COPYRIGHT'
+            section in pod.
+
+    *       "-y last_year"
+
+            Last year. Default value is actual year,
 
     *       "--version"
 

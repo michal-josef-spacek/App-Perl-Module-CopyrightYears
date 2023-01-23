@@ -28,7 +28,7 @@ perl-module-copyright-years - Tool for update copyright years in Perl distributi
 
 =head1 SYNOPSIS
 
- perl-module-copyright-years [-d] [-h] [--version]
+ perl-module-copyright-years [-d] [-h] [-s section(s)] [-y last_year] [--version]
 
 =head1 DESCRIPTION
 
@@ -46,6 +46,16 @@ Turn on debug mode.
 =item * C<-h>
 
 Print help.
+
+=item * C<-s section(s)>
+
+Section(s) to look.
+Default value is 'LICENSE AND COPYRIGHT' section in pod.
+
+=item * C<-y last_year>
+
+Last year.
+Default value is actual year,
 
 =item * C<--version>
 
