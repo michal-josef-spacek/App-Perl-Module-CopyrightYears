@@ -66,8 +66,7 @@ sub run {
 		$dump->dumpValues(\@pm);
 	}
 
-	# For each example save example.
-	my $num = 1;
+	# Update years.
 	foreach my $perl_module_file (@pm) {
 		$self->_update_pod($perl_module_file);
 	}
