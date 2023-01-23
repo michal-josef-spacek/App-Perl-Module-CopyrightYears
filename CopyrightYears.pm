@@ -9,6 +9,8 @@ use File::Spec::Functions qw(catfile);
 use Getopt::Std;
 use IO::Barf qw(barf);
 use Pod::CopyrightYears;
+use Perl6::Slurp qw(slurp);
+use String::UpdateYears qw(update_years);
 
 our $VERSION = 0.01;
 
@@ -77,7 +79,25 @@ sub run {
 	}
 
 	# Change copyright years in LICENSE file.
-	# TODO
+	my ($license) = $self->_files('LICENSE');
+	if (defined $license && -r $license) {
+		my @license = slurp($license);
+		my $opts_hr = {
+			'prefix_glob' => '.*\(c\)\s+',
+		};
+		my $update_file = 0;
+		foreach (my $i = 0; $i < @license; $i++) {
+			my $updated = update_years($license[$i], $opts_hr,
+				$self->{'_opts'}->{'y'});
+			if ($updated) {
+				$license[$i] = $updated;
+				$update_file = 1;
+			}
+		}
+		if ($update_file) {
+			barf($license, (join '', @license));
+		}
+	}
 
 	# Look for scripts with copyright years.
 	# TODO
@@ -172,7 +192,9 @@ L<File::Find::Rule>,
 L<File::Spec::Functions>,
 L<Getopt::Std>,
 L<IO::Barf>,
-L<Pod::CopyrightYears>.
+L<Pod::CopyrightYears>,
+L<Perl6::Slurp>,
+L<String::UpdateYears>.
 
 =head1 REPOSITORY
 
