@@ -23,6 +23,7 @@ requires 'Class::Utils' => 0;
 requires 'File::Find::Rule' => 0;
 requires 'File::Spec::Functions' => 0;
 requires 'Getopt::Std' => 0;
+requires 'IO::Barf' => 0;
 requires 'Pod::CopyrightYears' => 0;
 requires 'Perl6::Slurp' => 0;
 requires 'String::UpdateYears' => 0;
