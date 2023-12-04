@@ -129,6 +129,7 @@ sub _update_pod {
 
 	my @sections = split m/,/, $self->{'_opts'}->{'s'};
 	my $cy = Pod::CopyrightYears->new(
+		$self->{'_opts'}->{'d'} ? ('debug' => 1) : (),
 		'pod_file' => $file,
 		'section_names' => \@sections,
 	);

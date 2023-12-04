@@ -1,4 +1,5 @@
 0.04
+ - Add Pod::CopyrightYears debug support.
  - Rewrite debug mode to simple print.
  - Update Module::Install to 1.21 version.
 
