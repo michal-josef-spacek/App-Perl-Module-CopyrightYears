@@ -61,9 +61,8 @@ sub run {
 
 	# Dump perl modules in debug mode.
 	if ($self->{'_opts'}->{'d'}) {
-		require Dumpvalue;
-		my $dump = Dumpvalue->new;
-		$dump->dumpValues(\@pm);
+		print "Found files:\n";
+		print map { '- '.$_."\n"; } @pm;
 	}
 
 	# Update years.
@@ -98,9 +97,8 @@ sub run {
 
 		# Dump tools in debug mode.
 		if ($self->{'_opts'}->{'d'}) {
-			require Dumpvalue;
-			my $dump = Dumpvalue->new;
-			$dump->dumpValues(\@bin);
+			print "Found scripts:\n";
+			print map { '- '.$_."\n"; } @bin;
 		}
 
 		# Update years.
