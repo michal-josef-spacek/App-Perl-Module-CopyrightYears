@@ -71,23 +71,25 @@ sub run {
 	}
 
 	# Change copyright years in LICENSE file.
-	my ($license) = $self->_files('.', 'LICENSE');
-	if (defined $license && -r $license) {
-		my @license = slurp($license);
-		my $opts_hr = {
-			'prefix_glob' => '.*\(c\)\s+',
-		};
-		my $update_file = 0;
-		foreach (my $i = 0; $i < @license; $i++) {
-			my $updated = update_years($license[$i], $opts_hr,
-				$self->{'_opts'}->{'y'});
-			if ($updated) {
-				$license[$i] = $updated;
-				$update_file = 1;
+	my @licenses = $self->_files('.', 'LICENSE*');
+	foreach my $license (@licenses) {
+		if (defined $license && -r $license) {
+			my @license = slurp($license);
+			my $opts_hr = {
+				'prefix_glob' => '.*\(c\)\s+',
+			};
+			my $update_file = 0;
+			foreach (my $i = 0; $i < @license; $i++) {
+				my $updated = update_years($license[$i], $opts_hr,
+					$self->{'_opts'}->{'y'});
+				if ($updated) {
+					$license[$i] = $updated;
+					$update_file = 1;
+				}
 			}
-		}
-		if ($update_file) {
-			barf($license, (join '', @license));
+			if ($update_file) {
+				barf($license, (join '', @license));
+			}
 		}
 	}
 
