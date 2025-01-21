@@ -39,7 +39,7 @@ sub run {
 		's' => 'LICENSE AND COPYRIGHT',
 		'y' => undef,
 	};
-	if (! getopts('dhy:', $self->{'_opts'})
+	if (! getopts('dhs:y:', $self->{'_opts'})
 		|| $self->{'_opts'}->{'h'}) {
 
 		print STDERR "Usage: $0 [-d] [-h] [-s section(s)] [-y last_year] [--version]\n";
