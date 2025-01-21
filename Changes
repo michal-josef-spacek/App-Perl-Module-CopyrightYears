@@ -1,4 +1,4 @@
-0.05
+0.05 2025-01-21T18:26:35+01:00
  - Add test.
  - Add support for all files with LICENSE prefix.
  - Fix parsing of -s option.
